@@ -3,40 +3,17 @@
 namespace Iodev\Whois\Loaders;
 
 use Iodev\Whois\Exceptions\ConnectionException;
-use Iodev\Whois\Exceptions\WhoisException;
-use Iodev\Whois\Helpers\TextHelper;
 
-class CurlLoader implements ILoader
+class CurlLoader extends BaseLoader
 {
-    public function __construct($timeout = 60)
-    {
-        $this->setTimeout($timeout);
-        $this->options = [];
-    }
-
-    /** @var int */
-    private $timeout;
-
     /** @var array */
-    private $options;
+    protected $options = [];
 
-    /**
-     * @return int
-     */
-    public function getTimeout()
-    {
-        return $this->timeout;
-    }
+    /** @var resource */
+    protected $curl = null;
 
-    /**
-     * @param int $seconds
-     * @return $this
-     */
-    public function setTimeout($seconds)
-    {
-        $this->timeout = max(0, (int)$seconds);
-        return $this;
-    }
+    /** @var resource */
+    protected $handle = null;
 
     /**
      * @return array
@@ -67,58 +44,43 @@ class CurlLoader implements ILoader
     }
 
     /**
-     * @param string $whoisHost
-     * @param string $query
-     * @return string
      * @throws ConnectionException
-     * @throws WhoisException
      */
-    public function loadText($whoisHost, $query)
+    protected function load()
     {
-        if (!gethostbynamel($whoisHost)) {
-            throw new ConnectionException("Host is unreachable: $whoisHost");
-        }
-        $input = fopen('php://temp','r+');
-        if (!$input) {
+        $this->handle = fopen('php://temp','r+');
+        if (!$this->handle) {
             throw new ConnectionException('Query stream not created');
         }
-        fwrite($input, $query);
-        rewind($input);
+        fwrite($this->handle, $this->query);
+        rewind($this->handle);
 
-        $curl = curl_init();
-        if (!$curl) {
+        $this->curl = curl_init();
+        if (!$this->curl) {
             throw new ConnectionException('Curl not created');
         }
-        curl_setopt_array($curl, array_replace($this->options, [
+        curl_setopt_array($this->curl, array_replace($this->options, [
             CURLOPT_TIMEOUT => $this->timeout,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_PROTOCOLS => CURLPROTO_TELNET,
-            CURLOPT_URL => "telnet://$whoisHost:43",
-            CURLOPT_INFILE => $input,
+            CURLOPT_URL => "telnet://{$this->whoisHost}:43",
+            CURLOPT_INFILE => $this->handle,
         ]));
 
-        $result = curl_exec($curl);
-        $errstr = curl_error($curl);
-        $errno = curl_errno($curl);
-        curl_close($curl);
-        fclose($input);
-
-        if ($result === false) {
-            throw new ConnectionException($errstr, $errno);
+        $this->loadedText = curl_exec($this->curl);
+        if ($this->loadedText === false) {
+            throw new ConnectionException(curl_error($this->curl), curl_errno($this->curl));
         }
-        return $this->validateResponse(TextHelper::toUtf8($result));
     }
 
-    /**
-     * @param string $text
-     * @return mixed
-     * @throws WhoisException
-     */
-    private function validateResponse($text)
+    protected function teardown()
     {
-        if (preg_match('~^WHOIS\s+.*?LIMIT\s+EXCEEDED~ui', $text, $m)) {
-            throw new WhoisException($m[0]);
+        parent::teardown();
+        if ($this->curl) {
+            curl_close($this->curl);
         }
-        return $text;
+        if ($this->handle) {
+            fclose($this->handle);
+        }
     }
 }
