@@ -677,6 +677,10 @@ class TldParsingTest extends TestCase
             [ "free.qa", ".qa/free.txt", null ],
             [ "google.com.qa", ".qa/google.com.qa.txt", ".qa/google.com.qa.json" ],
 
+            // .RACING
+            [ "free.racing", ".racing/free.txt", null ],
+            [ "google.racing", ".racing/google.racing.txt", ".racing/google.racing.json" ],
+
             // .REN
             [ "free.ren", ".ren/free.txt", null ],
             [ "nic.ren", ".ren/nic.ren.txt", ".ren/nic.ren.json" ],

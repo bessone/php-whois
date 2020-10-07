@@ -560,6 +560,7 @@
   {"zone": ".qpon", "host": "whois.nic.qpon"},
   {"zone": ".quebec", "host": "whois.nic.quebec"},
   {"zone": ".quebec", "host": "whois.quebec.rs.corenic.net"},
+  {"zone": ".racing", "host": "whois.nic.racing"},
   {"zone": ".re", "host": "whois.nic.re"},
   {"zone": ".recipes", "host": "whois.donuts.co"},
   {"zone": ".red", "host": "whois.afilias.net"},
