@@ -919,6 +919,7 @@
   {"zone": ".rip", "host": "whois.nic.rip"},
   {"zone": ".rmit", "host": "whois.nic.rmit"},
   {"zone": ".ro", "host": "whois.rotld.ro", "parserType": "commonFlat"},
+  {"zone": ".rocher", "host": "whois.nic.rocher"},
   {"zone": ".rocks", "host": "whois.nic.rocks"},
   {"zone": ".rodeo", "host": "whois.nic.rodeo"},
   {"zone": ".rogers", "host": "whois.afilias-srs.net"},
