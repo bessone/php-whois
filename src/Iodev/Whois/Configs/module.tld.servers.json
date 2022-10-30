@@ -382,6 +382,7 @@
   {"zone": ".feedback", "host": "whois.nic.feedback"},
   {"zone": ".feedback", "host": "whois.centralnic.com"},
   {"zone": ".ferrari", "host": "whois.nic.ferrari"},
+  {"zone": ".ferrero", "host": "whois.nic.ferrero"},
   {"zone": ".fi", "host": "whois.fi", "parserType": "block"},
   {"zone": ".fi", "host": "whois.ficora.fi", "parserType": "block"},
   {"zone": ".fiat", "host": "whois.afilias-srs.net"},
