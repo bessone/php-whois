@@ -600,6 +600,7 @@
   {"zone": ".ki", "host": "whois.nic.ki"},
   {"zone": ".kia", "host": "whois.nic.kia"},
   {"zone": ".kim", "host": "whois.afilias.net"},
+  {"zone": ".kinder", "host": "whois.nic.kinder"},
   {"zone": ".kindle", "host": "whois.nic.kindle"},
   {"zone": ".kitchen", "host": "whois.nic.kitchen"},
   {"zone": ".kiwi", "host": "whois.nic.kiwi"},
