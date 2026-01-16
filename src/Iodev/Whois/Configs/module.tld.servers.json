@@ -235,7 +235,7 @@
   {"zone": ".cm", "host": "whois.netcom.cm"},
   {"zone": ".cn", "host": "whois.cnnic.cn"},
   {"zone": ".cn", "host": "whois.cnnic.net.cn"},
-  {"zone": ".co", "host": "whois.nic.co"},
+  {"zone": ".co", "host": "whois.registry.co"},
   {"zone": ".uk.co", "host": "whois.uk.co"},
   {"zone": ".coach", "host": "whois.nic.coach"},
   {"zone": ".codes", "host": "whois.nic.codes"},
