@@ -292,6 +292,7 @@
   {"zone": ".dclk", "host": "whois.nic.google"},
   {"zone": ".dds", "host": "whois.nic.dds"},
   {"zone": ".de", "host": "whois.denic.de", "queryFormat": "-T dn,ace %s\r\n"},
+  {"zone": ".com.de", "host": "whois.centralnic.net"},
   {"zone": ".deal", "host": "whois.nic.deal"},
   {"zone": ".dealer", "host": "whois.nic.dealer"},
   {"zone": ".deals", "host": "whois.nic.deals"},
