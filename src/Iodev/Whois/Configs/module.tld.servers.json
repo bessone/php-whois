@@ -569,7 +569,6 @@
   {"zone": ".io", "host": "whois.nic.io"},
   {"zone": ".iq", "host": "whois.cmc.iq"},
   {"zone": ".ir", "host": "whois.nic.ir"},
-  {"zone": ".ir", "host": "whois.nic.ir", "queryFormat": "-V Md5.2 %s\r\n"},
   {"zone": ".irish", "host": "whois.nic.irish"},
   {"zone": ".is", "host": "whois.isnic.is", "parserType": "block"},
   {"zone": ".ismaili", "host": "whois.afilias-srs.net"},
